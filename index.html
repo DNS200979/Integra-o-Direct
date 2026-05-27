@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementation Plan: Aprecomm & ISP Direct</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb; /* gray-50 */
+            color: #111827; /* gray-900 */
+        }
+        /* Required chart container styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 50vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        
+        .tab-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #f97316; /* orange-500 */
+            color: #f97316;
+            font-weight: 600;
+        }
+        
+        /* Custom scrollbar for better look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f3f4f6; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af; 
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen pb-12 selection:bg-orange-500 selection:text-white">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        
+        <!-- Header -->
+        <header class="mb-8 border-b border-gray-200 pb-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-black tracking-tight">ISP Direct <span class="text-gray-300 font-light mx-2">|</span> Aprecomm Implementation Plan</h1>
+                    <p class="mt-2 text-gray-600 max-w-3xl text-sm md:text-base">
+                        Executive dashboard summarizing migration phases, current infrastructure bottlenecks, and strategic expansion opportunities post-M&A. The global goal is to reach <strong>150,000 managed products by the end of the year.</strong>
+                    </p>
+                </div>
+                <div class="mt-4 md:mt-0 flex gap-4">
+                    <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200 text-center">
+                        <span class="block text-xs text-gray-500 uppercase tracking-wider font-semibold">Current Network</span>
+                        <span class="block text-xl font-bold text-black">~100k</span>
+                    </div>
+                    <div class="bg-orange-50 p-3 rounded-lg shadow-sm border border-orange-200 text-center">
+                        <span class="block text-xs text-orange-600 uppercase tracking-wider font-semibold">Target (Year-End)</span>
+                        <span class="block text-xl font-bold text-orange-700">150k</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex space-x-8 mb-8 border-b border-gray-200 overflow-x-auto" aria-label="Tabs">
+            <button onclick="switchTab('timeline')" id="btn-timeline" class="tab-btn active whitespace-nowrap py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-900">
+                &#128197; Timeline & Goals
+            </button>
+            <button onclick="switchTab('infra')" id="btn-infra" class="tab-btn whitespace-nowrap py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-900">
+                &#9881;&#65039; Infrastructure & Blockers
+            </button>
+            <button onclick="switchTab('strategy')" id="btn-strategy" class="tab-btn whitespace-nowrap py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-900">
+                &#128640; Expansion Strategy
+            </button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main>
+            
+            <!-- TAB 1: Timeline -->
+            <div id="tab-timeline" class="animate-fade-in block">
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold text-black">Massive Migration Trajectory</h2>
+                    <p class="text-sm text-gray-600 mt-1">The timeline was adjusted to the second week of June due to the acquisition of 3 new ISPs by Direct, which occupied the technical team. Below is the rollout plan.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Timeline Steps -->
+                    <div class="lg:col-span-1 space-y-6">
+                        <!-- Step 1 -->
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden group hover:border-gray-300 transition-colors">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-gray-400"></div>
+                            <h3 class="font-bold text-black text-lg flex justify-between items-center">
+                                Phase 1: Prep & Pilot
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full border border-gray-200">Early June</span>
+                            </h3>
+                            <ul class="mt-3 text-sm text-gray-600 space-y-2 list-disc pl-4 marker:text-gray-400">
+                                <li>NWE lab tests.</li>
+                                <li>Field tests at technicians' homes (50 to 100 devices).</li>
+                            </ul>
+                            
+                            <!-- NEW: Emphasized Training & Integration Kickoff -->
+                            <div class="mt-4 space-y-3">
+                                <div class="bg-orange-50 p-3 rounded border-l-4 border-orange-500 shadow-sm">
+                                    <span class="font-bold text-orange-700 uppercase text-[10px] tracking-wider block mb-1">&#128293; Priority Prerequisite</span>
+                                    <span class="text-sm text-orange-900 font-medium">Training for NOC, Call Center, and Commercial teams.</span>
+                                    <span class="text-xs text-orange-700 block mt-1">Crucial blocker to unlock the massive integration safely.</span>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 shadow-sm">
+                                    <span class="font-bold text-blue-700 uppercase text-[10px] tracking-wider block mb-1">&#9881;&#65039; Development Kickoff</span>
+                                    <span class="text-sm text-blue-900 font-medium">Initiate Dashboard Integrations:</span>
+                                    <ul class="text-xs text-blue-800 list-disc pl-4 mt-1">
+                                        <li>BRAS - Huawei</li>
+                                        <li>BRAS - Juniper</li>
+                                        <li>ERP - Radius Hubsoft</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden group hover:border-orange-300 transition-colors">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+                            <h3 class="font-bold text-black text-lg flex justify-between items-center">
+                                Phase 2: Made4It Replace
+                                <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full border border-orange-200">Mid June</span>
+                            </h3>
+                            <ul class="mt-3 text-sm text-gray-600 space-y-2 list-disc pl-4 marker:text-orange-500">
+                                <li>Start of massive migrations.</li>
+                                <li>Target: <strong>32,000 devices</strong> currently running on Made4It.</li>
+                                <li>Estimated duration: 15 days.</li>
+                            </ul>
+                            
+                            <!-- NEW: Delivery Deadline for Integrations -->
+                            <div class="mt-4 bg-red-50 p-3 rounded border-l-4 border-red-500 shadow-sm">
+                                <span class="font-bold text-red-700 uppercase text-[10px] tracking-wider block mb-1">&#128680; Delivery Deadline</span>
+                                <span class="text-sm text-red-900 font-medium">Integrations Delivery</span>
+                                <span class="text-xs text-red-800 block mt-1">BRAS (Huawei/Juniper) and ERP (Radius Hubsoft) integrations must be fully operational before this phase concludes.</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden group hover:border-black transition-colors">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-black"></div>
+                            <h3 class="font-bold text-black text-lg flex justify-between items-center">
+                                Phase 3: Bot Migration
+                                <span class="text-xs bg-black text-white px-2 py-1 rounded-full">July - Aug</span>
+                            </h3>
+                            <ul class="mt-3 text-sm text-gray-600 space-y-2 list-disc pl-4 marker:text-black">
+                                <li>Use of Aprecomm Bot for automated migration.</li>
+                                <li>Target: Remaining base, totaling <strong>80,000 devices</strong>.</li>
+                                <li>Estimated duration: Up to 2 months.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chart -->
+                    <div class="lg:col-span-2 bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col">
+                        <div class="mb-4">
+                            <h3 class="font-bold text-black">Projected Migrated Devices (Cumulative)</h3>
+                            <p class="text-xs text-gray-500">Estimated curve based on the rollout schedule towards the 150k target.</p>
+                        </div>
+                        <div class="chart-container flex-grow">
+                            <canvas id="migrationChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: Infrastructure -->
+            <div id="tab-infra" class="hidden animate-fade-in">
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold text-black">Technical & Operational Focus Points</h2>
+                    <p class="text-sm text-gray-600 mt-1">Immediate actions required to unblock the project's technical start and provide security to the client.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- VM Issue -->
+                    <div class="bg-white rounded-xl border border-orange-200 shadow-sm overflow-hidden flex flex-col">
+                        <div class="bg-orange-50 px-5 py-4 border-b border-orange-100 flex justify-between items-center">
+                            <h3 class="font-bold text-orange-900 text-lg flex items-center gap-2">
+                                &#9888;&#65039; Machine Sizing (VMs)
+                            </h3>
+                            <span class="bg-orange-200 text-orange-900 text-xs font-bold px-2 py-1 rounded uppercase">Pending Alignment</span>
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <p class="text-sm text-gray-700 mb-4">
+                                <strong>Current Scenario:</strong> Aprecomm requested 12 VMs. The client is insecure about this large structure, suggesting a capacity reduction to start.
+                            </p>
+                            <p class="text-sm text-gray-700 mb-4">
+                                <strong>Risk:</strong> The client's insecurity is delaying integrations and environment preparations.
+                            </p>
+                            <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                                <strong class="text-xs text-orange-600 font-bold uppercase block mb-1">Required Actions (Aprecomm)</strong>
+                                <ul class="text-sm text-gray-700 list-disc pl-4 space-y-1 marker:text-orange-500">
+                                    <li>Draw a detailed topology explaining the function of each VM.</li>
+                                    <li>Create progressive sizing: propose fewer VMs for Phase 1 (Pilot) and set triggers to scale as Phase 2 (32k) and Phase 3 (80k) advance.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resource Request -->
+                    <div class="bg-white rounded-xl border border-gray-300 shadow-sm overflow-hidden flex flex-col">
+                        <div class="bg-gray-100 px-5 py-4 border-b border-gray-200 flex justify-between items-center">
+                            <h3 class="font-bold text-black text-lg flex items-center gap-2">
+                                &#128101; Resource Allocation (Workforce)
+                            </h3>
+                            <span class="bg-black text-white text-xs font-bold px-2 py-1 rounded uppercase">Client Request</span>
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <p class="text-sm text-gray-700 mb-4">
+                                <strong>Current Scenario:</strong> The ISP Direct team is overloaded with recent acquisitions (3 ISPs).
+                            </p>
+                            <p class="text-sm text-gray-700 mb-4">
+                                <strong>Request:</strong> The client asked for Aprecomm resources (personnel) to accelerate internal homologations and machine preparation.
+                            </p>
+                            <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                                <strong class="text-xs text-black font-bold uppercase block mb-1">Desired Action</strong>
+                                <p class="text-sm text-gray-700">
+                                    Allocate an Aprecomm professional/team to work alongside the client's lead (<strong>Bryan</strong>) on operational tasks related to Aprecomm/Direct services.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TAB 3: Strategy -->
+            <div id="tab-strategy" class="hidden animate-fade-in">
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold text-black">Partnership & Expansion Opportunities</h2>
+                    <p class="text-sm text-gray-600 mt-1">How Aprecomm can leverage ISP Direct's M&A momentum to consolidate value and generate new business.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Migration Instance -->
+                    <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 hover:shadow-md hover:border-orange-300 transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xl">
+                                &#128268;
+                            </div>
+                            <h3 class="font-bold text-black text-lg">Product: "Migration Instance"</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">
+                            ISP Direct is actively acquiring other ISPs, making migration slow for their technical team.
+                        </p>
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <strong class="text-sm text-black block mb-2">Aprecomm Value Proposition:</strong>
+                            <p class="text-sm text-gray-800">
+                                Offer a standardized "migration instance" available whenever new ISPs are acquired. We help accelerate the network absorption process.
+                            </p>
+                            <ul class="text-sm text-gray-800 mt-2 list-disc pl-4 marker:text-orange-500">
+                                <li>Major partnership differentiator.</li>
+                                <li>Excellent marketing case to offer to other ISP clients making acquisitions.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- VNE Demo -->
+                    <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 hover:shadow-md hover:border-orange-300 transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-xl">
+                                &#128187;
+                            </div>
+                            <h3 class="font-bold text-black text-lg">Strategic VNE Demo</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">
+                            The client specifically requested a demonstration of the VNE product.
+                        </p>
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <strong class="text-sm text-black block mb-2">Demo Focus:</strong>
+                            <p class="text-sm text-gray-800">
+                                The presentation should focus on how VNE can help <strong>integrate OLTs and third-party equipment</strong> from newly acquired providers. Show agility and a unified view of the absorbed network.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Tab switching logic
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.getElementById('tab-timeline').classList.add('hidden');
+            document.getElementById('tab-infra').classList.add('hidden');
+            document.getElementById('tab-strategy').classList.add('hidden');
+            
+            // Remove active class from buttons
+            document.getElementById('btn-timeline').classList.remove('active');
+            document.getElementById('btn-infra').classList.remove('active');
+            document.getElementById('btn-strategy').classList.remove('active');
+            
+            // Show selected tab and set button active
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('active');
+
+            // Optional: re-render chart if switching back to its tab to ensure sizes are correct
+            if(tabId === 'timeline' && window.myMigrationChart) {
+                window.myMigrationChart.resize();
+            }
+        }
+
+        // Chart.js implementation
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('migrationChart').getContext('2d');
+            
+            // Data logic based on report:
+            // May: ~0 migrated (Lab)
+            // June: 32k (Made4It) + 100 (Lab) = ~32k
+            // July/August: +80k (Bot) = 112k
+            // Year-end (Dec): Target 150k total (converted installed base + new additions)
+            
+            const data = {
+                labels: ['May', 'June', 'July', 'August', 'December'],
+                datasets: [{
+                    label: 'Migrated Devices (Cumulative)',
+                    data: [100, 32100, 72000, 112100, 150000], 
+                    fill: true,
+                    backgroundColor: 'rgba(249, 115, 22, 0.1)', // orange-500 with opacity
+                    borderColor: 'rgb(249, 115, 22)', // orange-500
+                    borderWidth: 3,
+                    pointBackgroundColor: 'rgb(249, 115, 22)', // orange-500
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(249, 115, 22)',
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    tension: 0.3 // Smooth curve
+                }]
+            };
+
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, // CRITICAL for chart-container logic
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        annotation: {
+                            annotations: {
+                                phase1: {
+                                    type: 'label',
+                                    xValue: 'May',
+                                    yValue: 100,
+                                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                                    color: 'white',
+                                    content: ['Phase 1: Pilot'],
+                                    font: { size: 11, family: 'Inter' },
+                                    yAdjust: -30,
+                                    borderRadius: 4,
+                                    padding: 6,
+                                    callout: { display: true, position: 'bottom', borderColor: 'rgba(0, 0, 0, 0.8)' }
+                                },
+                                phase2: {
+                                    type: 'label',
+                                    xValue: 'June',
+                                    yValue: 32100,
+                                    backgroundColor: 'rgba(249, 115, 22, 0.9)',
+                                    color: 'white',
+                                    content: ['Phase 2: Made4It'],
+                                    font: { size: 11, family: 'Inter' },
+                                    xAdjust: -15,
+                                    yAdjust: -35,
+                                    borderRadius: 4,
+                                    padding: 6,
+                                    callout: { display: true, position: 'bottom', borderColor: 'rgba(249, 115, 22, 0.9)' }
+                                },
+                                phase3: {
+                                    type: 'label',
+                                    xValue: 'August',
+                                    yValue: 112100,
+                                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                                    color: 'white',
+                                    content: ['Phase 3: Bot Done'],
+                                    font: { size: 11, family: 'Inter' },
+                                    yAdjust: -35,
+                                    borderRadius: 4,
+                                    padding: 6,
+                                    callout: { display: true, position: 'bottom', borderColor: 'rgba(0, 0, 0, 0.8)' }
+                                },
+                                target: {
+                                    type: 'label',
+                                    xValue: 'December',
+                                    yValue: 150000,
+                                    backgroundColor: 'rgba(249, 115, 22, 0.9)',
+                                    color: 'white',
+                                    content: ['Goal: 150k'],
+                                    font: { size: 12, family: 'Inter', weight: 'bold' },
+                                    xAdjust: -35,
+                                    yAdjust: 20,
+                                    borderRadius: 4,
+                                    padding: 6,
+                                    callout: { display: true, position: 'top', borderColor: 'rgba(249, 115, 22, 0.9)' }
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.9)', // black
+                            titleFont: { size: 13, family: 'Inter' },
+                            bodyFont: { size: 14, family: 'Inter', weight: 'bold' },
+                            padding: 10,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('en-US').format(context.parsed.y) + ' ONUs';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 160000,
+                            ticks: {
+                                font: { family: 'Inter' },
+                                color: '#6b7280', // gray-500
+                                callback: function(value) {
+                                    return value / 1000 + 'k';
+                                }
+                            },
+                            grid: {
+                                color: '#f3f4f6', // gray-100
+                                drawBorder: false
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: { family: 'Inter' },
+                                color: '#6b7280' // gray-500
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                }
+            };
+
+            window.myMigrationChart = new Chart(ctx, config);
+        });
+    </script>
+</body>
+</html>
