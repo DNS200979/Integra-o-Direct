@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plano de Implementação: Aprecomm & ISP Direct</title>
+    <title>Implementation Plan: Aprecomm & ISP Direct</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
@@ -63,18 +63,18 @@
         <header class="mb-8 border-b border-gray-200 pb-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between">
                 <div>
-                    <h1 class="text-3xl font-bold text-black tracking-tight">ISP Direct <span class="text-gray-300 font-light mx-2">|</span> Plano de Implementação Aprecomm</h1>
+                    <h1 class="text-3xl font-bold text-black tracking-tight">ISP Direct <span class="text-gray-300 font-light mx-2">|</span> Aprecomm Implementation Plan</h1>
                     <p class="mt-2 text-gray-600 max-w-3xl text-sm md:text-base">
-                        Dashboard executivo resumindo as fases de migração, gargalos atuais de infraestrutura e oportunidades estratégicas de expansão pós-M&A. A meta global é atingir <strong>150.000 produtos gerenciados até o final do ano.</strong>
+                        Executive dashboard summarizing migration phases, current infrastructure bottlenecks, and strategic expansion opportunities post-M&A. The global goal is to reach <strong>150k[...]
                     </p>
                 </div>
                 <div class="mt-4 md:mt-0 flex gap-4">
                     <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200 text-center">
-                        <span class="block text-xs text-gray-500 uppercase tracking-wider font-semibold">Rede Atual</span>
+                        <span class="block text-xs text-gray-500 uppercase tracking-wider font-semibold">Current Network</span>
                         <span class="block text-xl font-bold text-black">~100k</span>
                     </div>
                     <div class="bg-orange-50 p-3 rounded-lg shadow-sm border border-orange-200 text-center">
-                        <span class="block text-xs text-orange-600 uppercase tracking-wider font-semibold">Meta (Fim do Ano)</span>
+                        <span class="block text-xs text-orange-600 uppercase tracking-wider font-semibold">Target (Year-End)</span>
                         <span class="block text-xl font-bold text-orange-700">150k</span>
                     </div>
                 </div>
@@ -84,13 +84,13 @@
         <!-- Navigation -->
         <nav class="flex space-x-8 mb-8 border-b border-gray-200 overflow-x-auto" aria-label="Tabs">
             <button onclick="switchTab('timeline')" id="btn-timeline" class="tab-btn active whitespace-nowrap py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-900">
-                &#128197; Cronograma e Metas
+                &#128197; Timeline & Milestones
             </button>
             <button onclick="switchTab('infra')" id="btn-infra" class="tab-btn whitespace-nowrap py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-900">
-                &#9881;&#65039; Infraestrutura e Bloqueios
+                &#9881;&#65039; Infrastructure & Blockers
             </button>
             <button onclick="switchTab('strategy')" id="btn-strategy" class="tab-btn whitespace-nowrap py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-900">
-                &#128640; Estratégia de Expansão
+                &#128640; Expansion Strategy
             </button>
         </nav>
 
@@ -100,8 +100,8 @@
             <!-- TAB 1: Timeline -->
             <div id="tab-timeline" class="animate-fade-in block">
                 <div class="mb-6">
-                    <h2 class="text-xl font-semibold text-black">Trajetória de Migração em Massa</h2>
-                    <p class="text-sm text-gray-600 mt-1">O cronograma foi ajustado para a segunda semana de junho devido à aquisição de 3 novos ISPs pela Direct, o que ocupou a equipe técnica. Abaixo está o plano de implantação.</p>
+                    <h2 class="text-xl font-semibold text-black">Mass Migration Timeline</h2>
+                    <p class="text-sm text-gray-600 mt-1">The timeline was adjusted to the second week of June due to Direct's acquisition of 3 new ISPs, which kept the technical team busy. Fur[...]
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -112,24 +112,24 @@
                         <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden group hover:border-gray-300 transition-colors">
                             <div class="absolute top-0 left-0 w-1 h-full bg-gray-400"></div>
                             <h3 class="font-bold text-black text-lg flex justify-between items-center">
-                                Fase 1: Preparação e Piloto
-                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full border border-gray-200">Início de Junho</span>
+                                Phase 1: Preparation & Pilot
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full border border-gray-200">Early June</span>
                             </h3>
                             <ul class="mt-3 text-sm text-gray-600 space-y-2 list-disc pl-4 marker:text-gray-400">
-                                <li>Testes de laboratório VWE.</li>
-                                <li>Testes de campo nas casas dos técnicos (50 a 150 dispositivos).</li>
+                                <li>VWE laboratory testing.</li>
+                                <li>Field tests at technicians' homes (50 to 150 devices).</li>
                             </ul>
                             
                             <!-- Emphasized Training & Integration Kickoff -->
                             <div class="mt-4 space-y-3">
                                 <div class="bg-orange-50 p-3 rounded border-l-4 border-orange-500 shadow-sm">
-                                    <span class="font-bold text-orange-700 uppercase text-[10px] tracking-wider block mb-1">&#128293; Pré-requisito Prioritário</span>
-                                    <span class="text-sm text-orange-900 font-medium">Treinamento para as equipes de NOC, Call Center e Comercial.</span>
-                                    <span class="text-xs text-orange-700 block mt-1">Bloqueio crucial para destravar a integração em massa com segurança.</span>
+                                    <span class="font-bold text-orange-700 uppercase text-[10px] tracking-wider block mb-1">&#128293; Priority Prerequisite</span>
+                                    <span class="text-sm text-orange-900 font-medium">Training for NOC, Call Center, and Sales teams.</span>
+                                    <span class="text-xs text-orange-700 block mt-1">Critical blocker to unblock mass integration securely.</span>
                                 </div>
                                 <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 shadow-sm">
-                                    <span class="font-bold text-blue-700 uppercase text-[10px] tracking-wider block mb-1">&#9881;&#65039; Início do Desenvolvimento</span>
-                                    <span class="text-sm text-blue-900 font-medium">Iniciar integrações do painel de controle:</span>
+                                    <span class="font-bold text-blue-700 uppercase text-[10px] tracking-wider block mb-1">&#9881;&#65039; Development Kickoff</span>
+                                    <span class="text-sm text-blue-900 font-medium">Begin control panel integrations:</span>
                                     <ul class="text-xs text-blue-800 list-disc pl-4 mt-1">
                                         <li>BRAS - Huawei</li>
                                         <li>BRAS - Juniper</li>
@@ -143,20 +143,20 @@
                         <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden group hover:border-orange-300 transition-colors">
                             <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
                             <h3 class="font-bold text-black text-lg flex justify-between items-center">
-                                Fase 2: Substituição Made4It
-                                <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full border border-orange-200">Meados de Junho</span>
+                                Phase 2: Made4It Replacement
+                                <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full border border-orange-200">Mid-June</span>
                             </h3>
                             <ul class="mt-3 text-sm text-gray-600 space-y-2 list-disc pl-4 marker:text-orange-500">
-                                <li>Início das migrações em massa.</li>
-                                <li>Alvo: <strong>32.000 dispositivos</strong> rodando atualmente no Made4It.</li>
-                                <li>Duração estimada: 7 dias.</li>
+                                <li>Start of mass migrations.</li>
+                                <li>Target: <strong>32,000 devices</strong> currently running on Made4It.</li>
+                                <li>Estimated duration: 7 days.</li>
                             </ul>
                             
                             <!-- Delivery Deadline for Integrations -->
                             <div class="mt-4 bg-red-50 p-3 rounded border-l-4 border-red-500 shadow-sm">
-                                <span class="font-bold text-red-700 uppercase text-[10px] tracking-wider block mb-1">&#128680; Prazo de Entrega</span>
-                                <span class="text-sm text-red-900 font-medium">Entrega das Integrações</span>
-                                <span class="text-xs text-red-800 block mt-1">As integrações BRAS (Huawei/Juniper) e ERP (Radius Hubsoft) devem estar totalmente operacionais antes que esta fase seja concluída.</span>
+                                <span class="font-bold text-red-700 uppercase text-[10px] tracking-wider block mb-1">&#128680; Delivery Deadline</span>
+                                <span class="text-sm text-red-900 font-medium">Integration Delivery</span>
+                                <span class="text-xs text-red-800 block mt-1">BRAS integrations (Huawei/Juniper) and ERP (Radius Hubsoft) must be fully operational before this phase is[...]
                             </div>
                         </div>
 
@@ -164,13 +164,13 @@
                         <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden group hover:border-black transition-colors">
                             <div class="absolute top-0 left-0 w-1 h-full bg-black"></div>
                             <h3 class="font-bold text-black text-lg flex justify-between items-center">
-                                Fase 3: Migração via Bot
-                                <span class="text-xs bg-black text-white px-2 py-1 rounded-full">Jul - Ago</span>
+                                Phase 3: Bot Migration
+                                <span class="text-xs bg-black text-white px-2 py-1 rounded-full">Jul - Aug</span>
                             </h3>
                             <ul class="mt-3 text-sm text-gray-600 space-y-2 list-disc pl-4 marker:text-black">
-                                <li>Uso do Bot da Aprecomm para migração automatizada.</li>
-                                <li>Alvo: Base restante, totalizando <strong>80.000 dispositivos</strong>.</li>
-                                <li>Duração estimada: Até 2 meses.</li>
+                                <li>Use Aprecomm Bot for automated migration.</li>
+                                <li>Target: Remaining base, totaling <strong>80,000 devices</strong>.</li>
+                                <li>Estimated duration: Up to 2 months.</li>
                             </ul>
                         </div>
                     </div>
@@ -178,8 +178,8 @@
                     <!-- Chart -->
                     <div class="lg:col-span-2 bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col">
                         <div class="mb-4">
-                            <h3 class="font-bold text-black">Dispositivos Migrados Projetados (Acumulado)</h3>
-                            <p class="text-xs text-gray-500">Curva estimada com base no cronograma de implantação rumo à meta de 150k.</p>
+                            <h3 class="font-bold text-black">Projected Migrated Devices (Cumulative)</h3>
+                            <p class="text-xs text-gray-500">Estimated curve based on implementation timeline towards 150k target.</p>
                         </div>
                         <div class="chart-container flex-grow">
                             <canvas id="migrationChart"></canvas>
@@ -191,8 +191,8 @@
             <!-- TAB 2: Infrastructure -->
             <div id="tab-infra" class="hidden animate-fade-in">
                 <div class="mb-6">
-                    <h2 class="text-xl font-semibold text-black">Pontos de Foco Técnico e Operacional</h2>
-                    <p class="text-sm text-gray-600 mt-1">Ações imediatas necessárias para destravar o início das integrações ao VCS.</p>
+                    <h2 class="text-xl font-semibold text-black">Technical & Operational Focus Points</h2>
+                    <p class="text-sm text-gray-600 mt-1">Immediate actions needed to unblock VCS integrations.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -201,22 +201,22 @@
                     <div class="bg-white rounded-xl border border-orange-200 shadow-sm overflow-hidden flex flex-col">
                         <div class="bg-orange-50 px-5 py-4 border-b border-orange-100 flex justify-between items-center">
                             <h3 class="font-bold text-orange-900 text-lg flex items-center gap-2">
-                                &#9888;&#65039; Dimensionamento de Máquinas (VMs)
+                                &#9888;&#65039; Virtual Machine Sizing (VMs)
                             </h3>
-                            <span class="bg-orange-200 text-orange-900 text-xs font-bold px-2 py-1 rounded uppercase">Alinhamento Pendente</span>
+                            <span class="bg-orange-200 text-orange-900 text-xs font-bold px-2 py-1 rounded uppercase">Alignment Pending</span>
                         </div>
                         <div class="p-5 flex-grow">
                             <p class="text-sm text-gray-700 mb-4">
-                                <strong>Cenário Atual:</strong> Infra para atender 150 mil devices precisa de 12 VMs. O cliente precisar de uma resposta tecnica em relação a grande estrutura solicitada,sugerindo uma redução de capacidade para iniciar e aumentando gradativamente.
+                                <strong>Current Scenario:</strong> Infrastructure to support 150k devices requires 12 VMs. The customer needs a technical response regarding the large requested[...]
                             </p>
                             <p class="text-sm text-gray-700 mb-4">
-                                <strong>Risco:</strong> O atraso nas integrações esta atrelada a preparação da infra total e a preparação do ambiente com o total de maquinas para as 12 VMs.
+                                <strong>Risk:</strong> The delay in integrations is tied to infrastructure preparation and environment setup for the full 12 VM structure.
                             </p>
                             <div class="bg-gray-50 p-4 rounded border border-gray-200">
-                                <strong class="text-xs text-orange-600 font-bold uppercase block mb-1">Ações Necessárias (Aprecomm)</strong>
+                                <strong class="text-xs text-orange-600 font-bold uppercase block mb-1">Necessary Actions (Aprecomm)</strong>
                                 <ul class="text-sm text-gray-700 list-disc pl-4 space-y-1 marker:text-orange-500">
-                                    <li>Desenhar uma topologia detalhada explicando a função de cada VM.</li>
-                                    <li>Criar dimensionamento progressivo: propor menos VMs para a Fase 1 (Piloto) e definir gatilhos para escalar conforme o avanço das Fases 2 (32k) e 3 (80k), assim como o total para comportar os 150k no fim do ano.</li>
+                                    <li>Design a detailed topology explaining each VM's function.</li>
+                                    <li>Create progressive scaling: propose fewer VMs for Phase 1 (Pilot) and define triggers to scale as Phases 2 (32k) and 3 (80k) progress, thus[...]
                                 </ul>
                             </div>
                         </div>
@@ -226,21 +226,21 @@
                     <div class="bg-white rounded-xl border border-gray-300 shadow-sm overflow-hidden flex flex-col">
                         <div class="bg-gray-100 px-5 py-4 border-b border-gray-200 flex justify-between items-center">
                             <h3 class="font-bold text-black text-lg flex items-center gap-2">
-                                &#128101; Alocação de Recursos (Equipe)
+                                &#128101; Resource Allocation (Team)
                             </h3>
-                            <span class="bg-black text-white text-xs font-bold px-2 py-1 rounded uppercase">Solicitação do Cliente</span>
+                            <span class="bg-black text-white text-xs font-bold px-2 py-1 rounded uppercase">Customer Request</span>
                         </div>
                         <div class="p-5 flex-grow">
                             <p class="text-sm text-gray-700 mb-4">
-                                <strong>Cenário Atual:</strong> A equipe da ISP Direct está sobrecarregada com as aquisições recentes (3 ISPs).
+                                <strong>Current Scenario:</strong> ISP Direct's team is overloaded with recent acquisitions (3 ISPs).
                             </p>
                             <p class="text-sm text-gray-700 mb-4">
-                                <strong>Solicitação:</strong> O cliente pediu recursos da Aprecomm (pessoal) para acelerar homologações internas e a preparação das máquinas.
+                                <strong>Request:</strong> The customer requested Aprecomm resources (personnel) to accelerate internal approvals and machine preparation.
                             </p>
                             <div class="bg-gray-50 p-4 rounded border border-gray-200">
-                                <strong class="text-xs text-black font-bold uppercase block mb-1">Ação Desejada</strong>
+                                <strong class="text-xs text-black font-bold uppercase block mb-1">Desired Action</strong>
                                 <p class="text-sm text-gray-700">
-                                    Alocar um profissional/equipe da Aprecomm para trabalhar junto ao líder do cliente (<strong>Brayan</strong>) nas tarefas operacionais relacionadas aos serviços Aprecomm/Direct.
+                                    Allocate an Aprecomm professional/team to work alongside the customer's leader (<strong>Brayan</strong>) on operational tasks related to Apr[...]
                                 </p>
                             </div>
                         </div>
@@ -252,8 +252,8 @@
             <!-- TAB 3: Strategy -->
             <div id="tab-strategy" class="hidden animate-fade-in">
                 <div class="mb-6">
-                    <h2 class="text-xl font-semibold text-black">Oportunidades de Parceria e Expansão</h2>
-                    <p class="text-sm text-gray-600 mt-1">Como a Aprecomm pode aproveitar o momento de M&A da ISP Direct para consolidar valor e gerar novos negócios.</p>
+                    <h2 class="text-xl font-semibold text-black">Partnership & Expansion Opportunities</h2>
+                    <p class="text-sm text-gray-600 mt-1">How Aprecomm can leverage ISP Direct's M&A momentum to consolidate value and generate new business.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -264,19 +264,19 @@
                             <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xl">
                                 &#128268;
                             </div>
-                            <h3 class="font-bold text-black text-lg">Produto: "Instância de Migração"</h3>
+                            <h3 class="font-bold text-black text-lg">Product: "Migration Instance"</h3>
                         </div>
                         <p class="text-sm text-gray-600 mb-4">
-                            A ISP Direct está adquirindo ativamente outros ISPs, o que torna a migração lenta para a equipe técnica deles.
+                            ISP Direct is actively acquiring other ISPs, making migration slow for their technical team.
                         </p>
                         <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                            <strong class="text-sm text-black block mb-2">Proposta de Valor da Aprecomm:</strong>
+                            <strong class="text-sm text-black block mb-2">Aprecomm's Value Proposition:</strong>
                             <p class="text-sm text-gray-800">
-                                Oferecer uma "instância de migração" padronizada, disponível sempre que novos ISPs forem adquiridos. Nós ajudamos a acelerar o processo de absorção da rede.
+                                Offer a standardized "migration instance" available whenever new ISPs are acquired. We help accelerate network absorption.
                             </p>
                             <ul class="text-sm text-gray-800 mt-2 list-disc pl-4 marker:text-orange-500">
-                                <li>Grande diferencial de parceria.</li>
-                                <li>Excelente case de marketing para oferecer a outros clientes ISPs que estão fazendo aquisições.</li>
+                                <li>Great partnership differentiator.</li>
+                                <li>Excellent marketing case to offer other ISP customers undergoing acquisitions.</li>
                             </ul>
                         </div>
                     </div>
@@ -287,15 +287,15 @@
                             <div class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-xl">
                                 &#128187;
                             </div>
-                            <h3 class="font-bold text-black text-lg">Demonstração Estratégica do VNE</h3>
+                            <h3 class="font-bold text-black text-lg">VNE Strategic Demonstration</h3>
                         </div>
                         <p class="text-sm text-gray-600 mb-4">
-                            O cliente solicitou especificamente uma demonstração do produto VNE.
+                            The customer specifically requested a VNE product demonstration.
                         </p>
                         <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                            <strong class="text-sm text-black block mb-2">Foco da Demonstração:</strong>
+                            <strong class="text-sm text-black block mb-2">Demonstration Focus:</strong>
                             <p class="text-sm text-gray-800">
-                                A apresentação deve focar em como o VNE pode ajudar a <strong>integrar OLTs e equipamentos de terceiros</strong> dos provedores recém-adquiridos. Mostre agilidade e uma visão unificada da rede absorvida.
+                                The presentation should focus on how VNE can help <strong>integrate OLTs and third-party equipment</strong> from recently acquired providers. Show agility and[...]
                             </p>
                         </div>
                     </div>
@@ -340,9 +340,9 @@
             // Year-end (Dec): Target 150k total (converted installed base + new additions)
             
             const data = {
-                labels: ['Maio', 'Junho', 'Julho', 'Agosto', 'Dezembro'],
+                labels: ['May', 'June', 'July', 'August', 'December'],
                 datasets: [{
-                    label: 'Dispositivos Migrados (Acumulado)',
+                    label: 'Migrated Devices (Cumulative)',
                     data: [100, 32100, 72000, 112100, 150000], 
                     fill: true,
                     backgroundColor: 'rgba(249, 115, 22, 0.1)', // orange-500 with opacity
@@ -372,11 +372,11 @@
                             annotations: {
                                 phase1: {
                                     type: 'label',
-                                    xValue: 'Maio',
+                                    xValue: 'May',
                                     yValue: 100,
                                     backgroundColor: 'rgba(0, 0, 0, 0.8)',
                                     color: 'white',
-                                    content: ['Fase 1: Piloto'],
+                                    content: ['Phase 1: Pilot'],
                                     font: { size: 11, family: 'Inter' },
                                     yAdjust: -30,
                                     borderRadius: 4,
@@ -385,11 +385,11 @@
                                 },
                                 phase2: {
                                     type: 'label',
-                                    xValue: 'Junho',
+                                    xValue: 'June',
                                     yValue: 32100,
                                     backgroundColor: 'rgba(249, 115, 22, 0.9)',
                                     color: 'white',
-                                    content: ['Fase 2: Made4It'],
+                                    content: ['Phase 2: Made4It'],
                                     font: { size: 11, family: 'Inter' },
                                     xAdjust: -15,
                                     yAdjust: -35,
@@ -399,11 +399,11 @@
                                 },
                                 phase3: {
                                     type: 'label',
-                                    xValue: 'Agosto',
+                                    xValue: 'August',
                                     yValue: 112100,
                                     backgroundColor: 'rgba(0, 0, 0, 0.8)',
                                     color: 'white',
-                                    content: ['Fase 3: Fim do Bot'],
+                                    content: ['Phase 3: Bot End'],
                                     font: { size: 11, family: 'Inter' },
                                     yAdjust: -35,
                                     borderRadius: 4,
@@ -412,11 +412,11 @@
                                 },
                                 target: {
                                     type: 'label',
-                                    xValue: 'Dezembro',
+                                    xValue: 'December',
                                     yValue: 150000,
                                     backgroundColor: 'rgba(249, 115, 22, 0.9)',
                                     color: 'white',
-                                    content: ['Meta: 150k'],
+                                    content: ['Target: 150k'],
                                     font: { size: 12, family: 'Inter', weight: 'bold' },
                                     xAdjust: -35,
                                     yAdjust: 20,
@@ -438,7 +438,7 @@
                                         label += ': ';
                                     }
                                     if (context.parsed.y !== null) {
-                                        label += new Intl.NumberFormat('pt-BR').format(context.parsed.y) + ' ONUs';
+                                        label += new Intl.NumberFormat('en-US').format(context.parsed.y) + ' ONUs';
                                     }
                                     return label;
                                 }
